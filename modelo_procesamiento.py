@@ -46,8 +46,8 @@ class ProcesadorCSV:
         
         self.ruta = ruta_archivo
         self.df = pd.read_csv(ruta_archivo)
+
         
-        # Asignar la columna de tiempo como índice
         if 'Tiempo' in self.df.columns:
             self.df.set_index('Tiempo', inplace=True)
         elif 'Time' in self.df.columns:
@@ -148,6 +148,7 @@ class ProcesadorMAT:
         """Aplica operaciones sobre 4 canales en un intervalo de tiempo y grafica."""
         matriz = self.mat_data[nombre_var]
         
+    
         if matriz.ndim == 3:
             matriz_2d = np.mean(matriz, axis=2) if matriz.shape[2] < matriz.shape[0] else np.mean(matriz, axis=0)
         else:
